@@ -25,9 +25,9 @@ if st.button("Processar"):
     st.session_state.prod_cadastrados.append(valorTotal[0])
     st.session_state.preco_cadastrados.append(valorTotal[1])
 
-for produtoAtual in st.session_state.prod_cadastrados:
-    for precoAtual in st.session_state.preco_cadastrados:
-        st.write(f"Produto: {produtoAtual} | Preço total: {precoAtual}")
+    for produtoAtual in st.session_state.prod_cadastrados:
+        for precoAtual in st.session_state.preco_cadastrados:
+            st.write(f"Produto: {produtoAtual} | Preço total: {precoAtual:.2f}")
 
 
 if st.button("Resetar lista"):
