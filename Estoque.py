@@ -11,11 +11,12 @@ if 'prod_cadastrados' not in st.session_state:
     st.session_state.prod_cadastrados = []
 if 'preco_cadastrados' not in st.session_state:
     st.session_state.preco_cadastrados=[]
-
-
-valorTotal= estoque(nomeProduto,quantidadeProduto,precoProduto)
+if 'quant_cadastradas' not in st.session_state:
+    st.session_state.quant_cadastradas=[]
 
 if st.button("Processar"):
+
+    valorTotal = estoque(nomeProduto, quantidadeProduto, precoProduto)
 
     st.write(f"Produto: {nomeProduto}")
     st.write(f"Quantidade: {quantidadeProduto}")
@@ -24,16 +25,20 @@ if st.button("Processar"):
 
     st.session_state.prod_cadastrados.append(valorTotal[0])
     st.session_state.preco_cadastrados.append(valorTotal[1])
+    st.session_state.quant_cadastradas.append(valorTotal[2])
 
-    for produtoAtual in st.session_state.prod_cadastrados:
-        for precoAtual in st.session_state.preco_cadastrados:
-            st.write(f"Produto: {produtoAtual} | Preço total: {precoAtual:.2f}")
+for produtoAtual , precoAtual, quantAtual in zip(st.session_state.prod_cadastrados,st.session_state.preco_cadastrados,st.session_state.quant_cadastradas):
+        st.write(f"Qt: {quantAtual} | Produto: {produtoAtual} - Preço total: {precoAtual:.2f}")
 
 
 if st.button("Resetar lista"):
     if 'prod_cadastrados' in st.session_state:
-        del st.session_state['prod_cadastrados']
-        del st.session_state['preco_cadastrados']
+            del st.session_state['prod_cadastrados']
+            del st.session_state['preco_cadastrados']
+            del st.session_state['quant_cadastradas']
+            st.rerun()
+
+
 
 
 
