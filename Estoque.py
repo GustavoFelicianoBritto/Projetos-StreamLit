@@ -4,7 +4,7 @@ from Library import estoque
 st.title("Estoque de produto")
 
 nomeProduto = st.text_input("Digite o nome do produto: ")
-quantidadeProduto = st.number_input(f"Selecione a quantidade de {nomeProduto}", format="%g",step=1,min_value=2, value="min")
+quantidadeProduto = st.number_input(f"Selecione a quantidade de {nomeProduto}", format="%g",step=1,min_value=1, value="min")
 precoProduto = st.number_input("Qual preço do produto: ",)
 
 if 'prod_cadastrados' not in st.session_state:
